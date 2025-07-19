@@ -1,5 +1,4 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { Button } from '@/components/ui/button';
 import { Home, User, Mail } from 'lucide-react';
 
@@ -65,8 +64,6 @@ export const Route = createRootRoute({
       <main className="w-full px-4 py-8">
         <Outlet />
       </main>
-      
-      <TanStackRouterDevtools />
     </div>
   ),
 });
