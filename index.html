@@ -1,13 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Basic React App with TanStack Router</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Krishi Officer - AI-Powered Agricultural Advisory</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-seedling"></i>
+                <span>Digital Krishi Officer</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#query" class="nav-link">Ask Question</a>
+                <a href="#about" class="nav-link">About</a>
+                <div class="language-selector">
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="ml">മലയാളം</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="ta">தமிழ்</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-en="Your Digital Agricultural Advisor" data-ml="നിങ്ങളുടെ ഡിജിറ്റൽ കാർഷിക ഉപദേശകൻ">
+                    Your Digital Agricultural Advisor
+                </h1>
+                <p class="hero-subtitle" data-en="Get instant, expert farming advice in your language. Ask questions about pests, weather, crops, and more." data-ml="നിങ്ങളുടെ ഭാഷയിൽ തൽക്ഷണം, വിദഗ്ദ്ധ കാർഷിക ഉപദേശം നേടുക. കീടങ്ങൾ, കാലാവസ്ഥ, വിളകൾ എന്നിവയെക്കുറിച്ച് ചോദ്യങ്ങൾ ചോദിക്കുക.">
+                    Get instant, expert farming advice in your language. Ask questions about pests, weather, crops, and more.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToQuery()">
+                        <i class="fas fa-microphone"></i>
+                        <span data-en="Ask Question" data-ml="ചോദ്യം ചോദിക്കുക">Ask Question</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToFeatures()">
+                        <i class="fas fa-info-circle"></i>
+                        <span data-en="Learn More" data-ml="കൂടുതൽ അറിയുക">Learn More</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title" data-en="Key Features" data-ml="പ്രധാന സവിശേഷതകൾ">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 data-en="Voice & Text Queries" data-ml="വോയ്സ് & ടെക്സ്റ്റ് ചോദ്യങ്ങൾ">Voice & Text Queries</h3>
+                    <p data-en="Ask questions in your native language using voice or text input" data-ml="വോയ്സ് അല്ലെങ്കിൽ ടെക്സ്റ്റ് ഇൻപുട്ട് ഉപയോഗിച്ച് നിങ്ങളുടെ മാതൃഭാഷയിൽ ചോദ്യങ്ങൾ ചോദിക്കുക">Ask questions in your native language using voice or text input</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 data-en="Image Analysis" data-ml="ഇമേജ് വിശകലനം">Image Analysis</h3>
+                    <p data-en="Upload photos of diseased crops or pests for instant diagnosis" data-ml="തൽക്ഷണ രോഗനിർണയത്തിനായി രോഗബാധിത വിളകളുടെയോ കീടങ്ങളുടെയോ ഫോട്ടോകൾ അപ്ലോഡ് ചെയ്യുക">Upload photos of diseased crops or pests for instant diagnosis</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 data-en="AI Knowledge Engine" data-ml="AI നോളജ് എഞ്ചിൻ">AI Knowledge Engine</h3>
+                    <p data-en="Powered by advanced AI trained on agricultural datasets and local knowledge" data-ml="കാർഷിക ഡാറ്റാസെറ്റുകളിലും പ്രാദേശിക അറിവിലും പരിശീലിപ്പിച്ച വിപുലമായ AI-യാൽ പ്രവർത്തിക്കുന്നു">Powered by advanced AI trained on agricultural datasets and local knowledge</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 data-en="Location-Aware" data-ml="ലൊക്കേഷൻ-അവേർ">Location-Aware</h3>
+                    <p data-en="Get personalized advice based on your location, season, and crop type" data-ml="നിങ്ങളുടെ സ്ഥാനം, സീസൺ, വിളയുടെ തരം എന്നിവയെ അടിസ്ഥാനമാക്കി വ്യക്തിഗത ഉപദേശം നേടുക">Get personalized advice based on your location, season, and crop type</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 data-en="Expert Escalation" data-ml="വിദഗ്ദ്ധ എസ്കലേഷൻ">Expert Escalation</h3>
+                    <p data-en="Complex queries are escalated to local agricultural officers with full context" data-ml="സങ്കീർണ്ണമായ ചോദ്യങ്ങൾ പൂർണ്ണ സന്ദർഭത്തോടെ പ്രാദേശിക കാർഷിക ഉദ്യോഗസ്ഥരിലേക്ക് എസ്കലേറ്റ് ചെയ്യുന്നു">Complex queries are escalated to local agricultural officers with full context</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-en="Continuous Learning" data-ml="തുടർച്ചയായ പഠനം">Continuous Learning</h3>
+                    <p data-en="System improves with every query, feedback, and expert input" data-ml="ഓരോ ചോദ്യം, ഫീഡ്ബാക്ക്, വിദഗ്ദ്ധ ഇൻപുട്ട് എന്നിവയോടെ സിസ്റ്റം മെച്ചപ്പെടുന്നു">System improves with every query, feedback, and expert input</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Query Interface Section -->
+    <section id="query" class="query-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Ask Your Question" data-ml="നിങ്ങളുടെ ചോദ്യം ചോദിക്കുക">Ask Your Question</h2>
+            <div class="query-container">
+                <div class="query-input-section">
+                    <div class="input-methods">
+                        <button class="input-method active" data-method="text">
+                            <i class="fas fa-keyboard"></i>
+                            <span data-en="Text" data-ml="ടെക്സ്റ്റ്">Text</span>
+                        </button>
+                        <button class="input-method" data-method="voice">
+                            <i class="fas fa-microphone"></i>
+                            <span data-en="Voice" data-ml="വോയ്സ്">Voice</span>
+                        </button>
+                        <button class="input-method" data-method="image">
+                            <i class="fas fa-camera"></i>
+                            <span data-en="Image" data-ml="ഇമേജ്">Image</span>
+                        </button>
+                    </div>
+                    
+                    <div class="query-input">
+                        <textarea id="textInput" placeholder="Ask your agricultural question here... (e.g., Which pesticide for leaf spot in banana?)" data-en-placeholder="Ask your agricultural question here... (e.g., Which pesticide for leaf spot in banana?)" data-ml-placeholder="നിങ്ങളുടെ കാർഷിക ചോദ്യം ഇവിടെ ചോദിക്കുക... (ഉദാ: വാഴയിലെ ഇല പുള്ളി രോഗത്തിന് ഏത് കീടനാശിനി?)"></textarea>
+                        <div class="input-actions">
+                            <button id="voiceRecordBtn" class="btn btn-voice" style="display: none;">
+                                <i class="fas fa-microphone"></i>
+                                <span data-en="Start Recording" data-ml="റെക്കോർഡിംഗ് ആരംഭിക്കുക">Start Recording</span>
+                            </button>
+                            <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                            <button id="imageUploadBtn" class="btn btn-image" style="display: none;">
+                                <i class="fas fa-upload"></i>
+                                <span data-en="Upload Image" data-ml="ഇമേജ് അപ്ലോഡ് ചെയ്യുക">Upload Image</span>
+                            </button>
+                            <button id="submitQuery" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                <span data-en="Submit" data-ml="സമർപ്പിക്കുക">Submit</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="context-settings">
+                        <h4 data-en="Context Settings (Optional)" data-ml="സന്ദർഭ ക്രമീകരണങ്ങൾ (ഓപ്ഷണൽ)">Context Settings (Optional)</h4>
+                        <div class="context-grid">
+                            <div class="context-field">
+                                <label data-en="Location" data-ml="സ്ഥാനം">Location</label>
+                                <input type="text" id="locationInput" placeholder="e.g., Kerala, India">
+                            </div>
+                            <div class="context-field">
+                                <label data-en="Crop Type" data-ml="വിളയുടെ തരം">Crop Type</label>
+                                <select id="cropSelect">
+                                    <option value="">Select crop...</option>
+                                    <option value="rice">Rice</option>
+                                    <option value="wheat">Wheat</option>
+                                    <option value="banana">Banana</option>
+                                    <option value="coconut">Coconut</option>
+                                    <option value="spices">Spices</option>
+                                    <option value="vegetables">Vegetables</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="context-field">
+                                <label data-en="Season" data-ml="സീസൺ">Season</label>
+                                <select id="seasonSelect">
+                                    <option value="">Select season...</option>
+                                    <option value="kharif">Kharif</option>
+                                    <option value="rabi">Rabi</option>
+                                    <option value="zaid">Zaid</option>
+                                    <option value="monsoon">Monsoon</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="query-response">
+                    <div id="responseArea" class="response-area">
+                        <div class="response-placeholder">
+                            <i class="fas fa-robot"></i>
+                            <h3 data-en="Ask a question to get started" data-ml="ആരംഭിക്കാൻ ഒരു ചോദ്യം ചോദിക്കുക">Ask a question to get started</h3>
+                            <p data-en="Your AI agricultural advisor is ready to help!" data-ml="നിങ്ങളുടെ AI കാർഷിക ഉപദേശകൻ സഹായിക്കാൻ തയ്യാറാണ്!">Your AI agricultural advisor is ready to help!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 data-en="About Digital Krishi Officer" data-ml="ഡിജിറ്റൽ കൃഷി ഉദ്യോഗസ്ഥനെക്കുറിച്ച്">About Digital Krishi Officer</h2>
+                    <p data-en="Digital Krishi Officer is an AI-powered agricultural advisory system designed to bridge the gap between farmers and expert knowledge. Our system provides instant, accurate, and context-aware advice in multiple Indian languages, making expert farming guidance accessible to all farmers regardless of their location or literacy level." data-ml="ഡിജിറ്റൽ കൃഷി ഉദ്യോഗസ്ഥൻ കർഷകരുടെയും വിദഗ്ദ്ധ അറിവിന്റെയും ഇടയിലുള്ള വിടവ് പരിഹരിക്കാൻ രൂപകൽപ്പന ചെയ്ത ഒരു AI-പവർഡ് കാർഷിക ഉപദേശ സിസ്റ്റമാണ്. ഞങ്ങളുടെ സിസ്റ്റം ഒന്നിലധികം ഇന്ത്യൻ ഭാഷകളിൽ തൽക്ഷണം, കൃത്യവും സന്ദർഭ-അവബോധവുമുള്ള ഉപദേശം നൽകുന്നു, എല്ലാ കർഷകർക്കും അവരുടെ സ്ഥാനമോ സാക്ഷരതാ നിലയോ പരിഗണിക്കാതെ വിദഗ്ദ്ധ കാർഷിക മാർഗദർശനം ലഭ്യമാക്കുന്നു.">Digital Krishi Officer is an AI-powered agricultural advisory system designed to bridge the gap between farmers and expert knowledge. Our system provides instant, accurate, and context-aware advice in multiple Indian languages, making expert farming guidance accessible to all farmers regardless of their location or literacy level.</p>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <h3>24/7</h3>
+                            <p data-en="Available" data-ml="ലഭ്യമാണ്">Available</p>
+                        </div>
+                        <div class="stat">
+                            <h3>5+</h3>
+                            <p data-en="Languages" data-ml="ഭാഷകൾ">Languages</p>
+                        </div>
+                        <div class="stat">
+                            <h3>1000+</h3>
+                            <p data-en="Queries Daily" data-ml="ദൈനംദിന ചോദ്യങ്ങൾ">Queries Daily</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-en="Digital Krishi Officer" data-ml="ഡിജിറ്റൽ കൃഷി ഉദ്യോഗസ്ഥൻ">Digital Krishi Officer</h3>
+                    <p data-en="Empowering farmers with AI-driven agricultural advice" data-ml="AI-ഡ്രൈവൻ കാർഷിക ഉപദേശത്തോടെ കർഷകരെ ശാക്തീകരിക്കുന്നു">Empowering farmers with AI-driven agricultural advice</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-en="Quick Links" data-ml="ദ്രുത ലിങ്കുകൾ">Quick Links</h4>
+                    <ul>
+                        <li><a href="#home" data-en="Home" data-ml="ഹോം">Home</a></li>
+                        <li><a href="#features" data-en="Features" data-ml="സവിശേഷതകൾ">Features</a></li>
+                        <li><a href="#query" data-en="Ask Question" data-ml="ചോദ്യം ചോദിക്കുക">Ask Question</a></li>
+                        <li><a href="#about" data-en="About" data-ml="കുറിച്ച്">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-en="Support" data-ml="പിന്തുണ">Support</h4>
+                    <ul>
+                        <li><a href="#" data-en="Help Center" data-ml="സഹായ കേന്ദ്രം">Help Center</a></li>
+                        <li><a href="#" data-en="Contact Us" data-ml="ഞങ്ങളെ ബന്ധപ്പെടുക">Contact Us</a></li>
+                        <li><a href="#" data-en="Feedback" data-ml="ഫീഡ്ബാക്ക്">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Digital Krishi Officer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
