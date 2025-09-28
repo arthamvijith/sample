@@ -1,13 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Basic React App with TanStack Router</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Krishi Officer - AI-Powered Agricultural Advisory</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-seedling"></i>
+                <span>Digital Krishi Officer</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#query" class="nav-link">Ask Question</a>
+                <a href="#about" class="nav-link">About</a>
+                <div class="language-selector">
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="ml">മലയാളം</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="ta">தமிழ்</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="highlight">AI-Powered</span> Agricultural Advisory
+                </h1>
+                <p class="hero-subtitle">
+                    Get instant, expert-level farming advice in your own language. 
+                    Ask questions about pests, weather, inputs, and market trends - 
+                    your Digital Krishi Officer is always available.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToQuery()">
+                        <i class="fas fa-microphone"></i>
+                        Ask Your Question
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToFeatures()">
+                        <i class="fas fa-info-circle"></i>
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Core Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Natural Language Queries</h3>
+                    <p>Ask questions in Malayalam or your preferred language. Voice or text input supported.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Multimodal Inputs</h3>
+                    <p>Upload images of diseased crops or record voice notes for comprehensive analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI Knowledge Engine</h3>
+                    <p>Powered by advanced LLMs and fine-tuned agricultural datasets for accurate advice.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Context Awareness</h3>
+                    <p>Personalized advice based on your location, crop type, season, and farming history.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Expert Escalation</h3>
+                    <p>Complex queries are escalated to local agricultural officers with full context.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Continuous Learning</h3>
+                    <p>System improves through real queries, feedback, and expert inputs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Query Interface -->
+    <section id="query" class="query-section">
+        <div class="container">
+            <h2 class="section-title">Ask Your Agricultural Question</h2>
+            <div class="query-container">
+                <div class="query-input-section">
+                    <div class="input-tabs">
+                        <button class="tab-btn active" data-tab="text">
+                            <i class="fas fa-keyboard"></i>
+                            Text
+                        </button>
+                        <button class="tab-btn" data-tab="voice">
+                            <i class="fas fa-microphone"></i>
+                            Voice
+                        </button>
+                        <button class="tab-btn" data-tab="image">
+                            <i class="fas fa-camera"></i>
+                            Image
+                        </button>
+                    </div>
+
+                    <!-- Text Input Tab -->
+                    <div class="tab-content active" id="text-tab">
+                        <div class="input-group">
+                            <textarea 
+                                id="textQuery" 
+                                placeholder="എന്റെ വാഴയിലെ ഇല കറുപ്പ് പുള്ളികൾക്ക് ഏത് കീടനാശിനി ഉപയോഗിക്കണം? (Which pesticide should I use for black spots on my banana leaves?)"
+                                rows="4"
+                            ></textarea>
+                            <button class="btn btn-primary" onclick="submitTextQuery()">
+                                <i class="fas fa-paper-plane"></i>
+                                Ask Question
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Voice Input Tab -->
+                    <div class="tab-content" id="voice-tab">
+                        <div class="voice-recorder">
+                            <div class="recording-indicator" id="recordingIndicator">
+                                <div class="pulse"></div>
+                                <span>Recording...</span>
+                            </div>
+                            <button class="btn btn-voice" id="voiceBtn" onclick="toggleRecording()">
+                                <i class="fas fa-microphone"></i>
+                                Start Recording
+                            </button>
+                            <div class="voice-controls">
+                                <button class="btn btn-secondary" onclick="playRecording()" id="playBtn" disabled>
+                                    <i class="fas fa-play"></i>
+                                    Play
+                                </button>
+                                <button class="btn btn-primary" onclick="submitVoiceQuery()" id="submitVoiceBtn" disabled>
+                                    <i class="fas fa-paper-plane"></i>
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Input Tab -->
+                    <div class="tab-content" id="image-tab">
+                        <div class="image-upload">
+                            <div class="upload-area" id="uploadArea">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to upload or drag and drop crop image</p>
+                                <input type="file" id="imageInput" accept="image/*" onchange="handleImageUpload(event)">
+                            </div>
+                            <div class="image-preview" id="imagePreview" style="display: none;">
+                                <img id="previewImg" src="" alt="Preview">
+                                <button class="btn btn-secondary" onclick="removeImage()">
+                                    <i class="fas fa-trash"></i>
+                                    Remove
+                                </button>
+                            </div>
+                            <div class="image-query">
+                                <textarea 
+                                    id="imageQuery" 
+                                    placeholder="Describe the problem you're seeing in the image..."
+                                    rows="3"
+                                ></textarea>
+                                <button class="btn btn-primary" onclick="submitImageQuery()" id="submitImageBtn" disabled>
+                                    <i class="fas fa-paper-plane"></i>
+                                    Analyze Image
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Farmer Context -->
+                <div class="farmer-context">
+                    <h3>Your Farming Context</h3>
+                    <div class="context-grid">
+                        <div class="context-item">
+                            <label>Location</label>
+                            <input type="text" id="farmerLocation" placeholder="Enter your district/village">
+                        </div>
+                        <div class="context-item">
+                            <label>Primary Crop</label>
+                            <select id="primaryCrop">
+                                <option value="">Select crop</option>
+                                <option value="rice">Rice</option>
+                                <option value="banana">Banana</option>
+                                <option value="coconut">Coconut</option>
+                                <option value="spices">Spices</option>
+                                <option value="vegetables">Vegetables</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="context-item">
+                            <label>Season</label>
+                            <select id="season">
+                                <option value="">Select season</option>
+                                <option value="kharif">Kharif</option>
+                                <option value="rabi">Rabi</option>
+                                <option value="zaid">Zaid</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Response Section -->
+    <section id="response" class="response-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">AI Response</h2>
+            <div class="response-container">
+                <div class="response-card">
+                    <div class="response-header">
+                        <div class="ai-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="response-info">
+                            <h3>Digital Krishi Officer</h3>
+                            <span class="response-time" id="responseTime"></span>
+                        </div>
+                        <div class="response-actions">
+                            <button class="btn btn-sm" onclick="copyResponse()">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="btn btn-sm" onclick="speakResponse()">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="response-content" id="responseContent">
+                        <!-- AI response will be displayed here -->
+                    </div>
+                    <div class="response-footer">
+                        <div class="feedback-section">
+                            <span>Was this helpful?</span>
+                            <button class="feedback-btn" onclick="submitFeedback('helpful')">
+                                <i class="fas fa-thumbs-up"></i>
+                            </button>
+                            <button class="feedback-btn" onclick="submitFeedback('not-helpful')">
+                                <i class="fas fa-thumbs-down"></i>
+                            </button>
+                        </div>
+                        <div class="escalation-section">
+                            <button class="btn btn-outline" onclick="escalateToExpert()">
+                                <i class="fas fa-user-tie"></i>
+                                Escalate to Expert
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Digital Krishi Officer</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Digital Krishi Officer is an AI-powered agricultural advisory system designed to bridge 
+                        the gap between farmers and expert agricultural knowledge. Our system provides instant, 
+                        context-aware advice in multiple languages, with special focus on Malayalam.
+                    </p>
+                    <p>
+                        Built with advanced language models and fine-tuned agricultural datasets, the system 
+                        understands local farming practices, seasonal patterns, and regional challenges to 
+                        provide personalized recommendations.
+                    </p>
+                    <div class="stats">
+                        <div class="stat">
+                            <h3>24/7</h3>
+                            <p>Always Available</p>
+                        </div>
+                        <div class="stat">
+                            <h3>5+</h3>
+                            <p>Languages Supported</p>
+                        </div>
+                        <div class="stat">
+                            <h3>1000+</h3>
+                            <p>Agricultural Queries</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Digital Krishi Officer</h3>
+                    <p>Your AI-powered agricultural advisor, always available to help with farming challenges.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#query">Ask Question</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Digital Krishi Officer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Processing your query...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
