@@ -1,6 +1,6 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
-import { Home, User, Mail } from 'lucide-react';
+import { Home, User, Mail, Bot } from 'lucide-react';
 
 export const Route = createRootRoute({
   component: () => (
@@ -52,6 +52,19 @@ export const Route = createRootRoute({
                     >
                       <Mail className="w-4 h-4" />
                       <span>Contact</span>
+                    </Button>
+                  )}
+                </Link>
+
+                <Link to="/ask">
+                  {({ isActive }) => (
+                    <Button 
+                      variant={isActive ? "default" : "ghost"} 
+                      size="sm"
+                      className="flex items-center space-x-2"
+                    >
+                      <Bot className="w-4 h-4" />
+                      <span>Ask</span>
                     </Button>
                   )}
                 </Link>
