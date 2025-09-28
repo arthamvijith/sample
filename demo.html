@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Krishi Officer - Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .demo-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2d7d32;
+            text-align: center;
+        }
+        .feature-demo {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .demo-button {
+            background: #2d7d32;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .demo-button:hover {
+            background: #1b5e20;
+        }
+        .response {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #2d7d32;
+        }
+        .language-selector {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .language-selector select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>🌱 Digital Krishi Officer - Demo</h1>
+        
+        <div class="language-selector">
+            <label for="langSelect">Select Language: </label>
+            <select id="langSelect" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="ml">മലയാളം</option>
+                <option value="hi">हिन्दी</option>
+                <option value="ta">தமிழ்</option>
+            </select>
+        </div>
+
+        <div class="feature-demo">
+            <h3>🎤 Voice Input Demo</h3>
+            <p>Click the button below to test voice recording (requires microphone access):</p>
+            <button class="demo-button" onclick="testVoiceInput()">🎤 Start Voice Recording</button>
+            <div id="voiceStatus"></div>
+        </div>
+
+        <div class="feature-demo">
+            <h3>📝 Text Query Demo</h3>
+            <p>Try these sample queries:</p>
+            <button class="demo-button" onclick="demoQuery('leaf spot banana')">🍌 Leaf Spot in Banana</button>
+            <button class="demo-button" onclick="demoQuery('pest control rice')">🌾 Rice Pest Control</button>
+            <button class="demo-button" onclick="demoQuery('weather advice')">🌧️ Weather Advice</button>
+            <div id="textResponse"></div>
+        </div>
+
+        <div class="feature-demo">
+            <h3>📷 Image Upload Demo</h3>
+            <p>Upload an image of a diseased crop or pest:</p>
+            <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload()">
+            <div id="imageResponse"></div>
+        </div>
+
+        <div class="feature-demo">
+            <h3>🌐 Language Support Demo</h3>
+            <p>Current language: <span id="currentLang">English</span></p>
+            <p id="langDemo">This text will change based on the selected language.</p>
+        </div>
+
+        <div class="feature-demo">
+            <h3>📱 Responsive Design</h3>
+            <p>This website is designed to work on all devices:</p>
+            <ul>
+                <li>📱 Mobile phones (Android/iOS)</li>
+                <li>📱 Tablets</li>
+                <li>💻 Desktop computers</li>
+                <li>🖥️ Large screens</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="index.html" class="demo-button" style="text-decoration: none; display: inline-block;">
+                🚀 Launch Full Website
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let currentLanguage = 'en';
+        let isRecording = false;
+
+        const translations = {
+            en: {
+                'This text will change based on the selected language.': 'This text will change based on the selected language.',
+                'Current language:': 'Current language:',
+                'English': 'English',
+                'Malayalam': 'Malayalam',
+                'Hindi': 'Hindi',
+                'Tamil': 'Tamil'
+            },
+            ml: {
+                'This text will change based on the selected language.': 'തിരഞ്ഞെടുത്ത ഭാഷയെ അടിസ്ഥാനമാക്കി ഈ ടെക്സ്റ്റ് മാറും.',
+                'Current language:': 'നിലവിലെ ഭാഷ:',
+                'English': 'ഇംഗ്ലീഷ്',
+                'Malayalam': 'മലയാളം',
+                'Hindi': 'ഹിന്ദി',
+                'Tamil': 'തമിഴ്'
+            },
+            hi: {
+                'This text will change based on the selected language.': 'चयनित भाषा के आधार पर यह पाठ बदल जाएगा।',
+                'Current language:': 'वर्तमान भाषा:',
+                'English': 'अंग्रेजी',
+                'Malayalam': 'मलयालम',
+                'Hindi': 'हिन्दी',
+                'Tamil': 'तमिल'
+            },
+            ta: {
+                'This text will change based on the selected language.': 'தேர்ந்தெடுக்கப்பட்ட மொழியின் அடிப்படையில் இந்த உரை மாறும்.',
+                'Current language:': 'தற்போதைய மொழி:',
+                'English': 'ஆங்கிலம்',
+                'Malayalam': 'மலையாளம்',
+                'Hindi': 'இந்தி',
+                'Tamil': 'தமிழ்'
+            }
+        };
+
+        const knowledgeBase = {
+            'leaf spot banana': {
+                en: 'For leaf spot in banana, use copper-based fungicides like Bordeaux mixture (1%) or copper oxychloride (0.3%). Apply every 15 days during wet weather. Remove infected leaves and ensure proper drainage.',
+                ml: 'വാഴയിലെ ഇല പുള്ളി രോഗത്തിന്, ബോർഡോ മിശ്രിതം (1%) അല്ലെങ്കിൽ കോപ്പർ ഓക്സിക്ലോറൈഡ് (0.3%) പോലുള്ള ചെമ്പ് അടിസ്ഥാന ഫംഗിസൈഡുകൾ ഉപയോഗിക്കുക. നനഞ്ഞ കാലാവസ്ഥയിൽ 15 ദിവസത്തിലൊരിക്കൽ പ്രയോഗിക്കുക.',
+                hi: 'केले में पत्ती के धब्बे के लिए, बोर्डो मिश्रण (1%) या कॉपर ऑक्सीक्लोराइड (0.3%) जैसे तांबे आधारित फफूंदनाशक का उपयोग करें।',
+                ta: 'வாழை இலை புள்ளிக்கு, பார்டோ கலவை (1%) அல்லது காப்பர் ஆக்ஸிக்ளோரைடு (0.3%) போன்ற செப்பு அடிப்படை பூஞ்சை கொல்லிகள் பயன்படுத்தவும்.'
+            },
+            'pest control rice': {
+                en: 'For rice pest control, use integrated pest management. Apply neem oil (2ml/liter) for organic control. For severe infestations, use recommended insecticides.',
+                ml: 'അരി കീടനിയന്ത്രണത്തിന്, സംയോജിത കീടനിയന്ത്രണം ഉപയോഗിക്കുക. ജൈവ നിയന്ത്രണത്തിന് വേപ്പെണ്ണ (2ml/ലിറ്റർ) പ്രയോഗിക്കുക.',
+                hi: 'चावल कीट नियंत्रण के लिए, एकीकृत कीट प्रबंधन का उपयोग करें। जैविक नियंत्रण के लिए नीम का तेल (2ml/लीटर) लगाएं।',
+                ta: 'அரிசி பூச்சி கட்டுப்பாட்டிற்கு, ஒருங்கிணைந்த பூச்சி மேலாண்மையைப் பயன்படுத்தவும். கரிம கட்டுப்பாட்டிற்கு வேப்பெண்ணெய் (2ml/லிட்டர்) பயன்படுத்தவும்.'
+            },
+            'weather advice': {
+                en: 'Monitor weather forecasts regularly. During heavy rains, ensure proper drainage. In drought conditions, use water conservation techniques like mulching and drip irrigation.',
+                ml: 'കാലാവസ്ഥാ പ്രവചനങ്ങൾ നിരന്തരം നിരീക്ഷിക്കുക. കനത്ത മഴയ്ക്കിടെ, ഉചിതമായ ഡ്രെയിനേജ് ഉറപ്പാക്കുക.',
+                hi: 'मौसम पूर्वानुमान की नियमित निगरानी करें। भारी बारिश के दौरान, उचित जल निकासी सुनिश्चित करें।',
+                ta: 'வானிலை முன்னறிவிப்புகளை தவறாமல் கண்காணிக்கவும். கடுமையான மழையின் போது, சரியான வடிகால் உறுதிப்படுத்தவும்.'
+            }
+        };
+
+        function changeLanguage() {
+            currentLanguage = document.getElementById('langSelect').value;
+            updateLanguageDisplay();
+        }
+
+        function updateLanguageDisplay() {
+            const langNames = {
+                'en': 'English',
+                'ml': 'മലയാളം',
+                'hi': 'हिन्दी',
+                'ta': 'தமிழ்'
+            };
+            
+            document.getElementById('currentLang').textContent = langNames[currentLanguage];
+            
+            if (translations[currentLanguage]) {
+                document.getElementById('langDemo').textContent = translations[currentLanguage]['This text will change based on the selected language.'];
+            }
+        }
+
+        function testVoiceInput() {
+            const statusDiv = document.getElementById('voiceStatus');
+            
+            if (!isRecording) {
+                statusDiv.innerHTML = '<div class="response">🎤 Recording started... (This is a demo - no actual recording)</div>';
+                isRecording = true;
+                
+                setTimeout(() => {
+                    statusDiv.innerHTML = '<div class="response">✅ Voice input received! In a real implementation, this would be converted to text and processed.</div>';
+                    isRecording = false;
+                }, 3000);
+            }
+        }
+
+        function demoQuery(queryType) {
+            const responseDiv = document.getElementById('textResponse');
+            const response = knowledgeBase[queryType][currentLanguage] || knowledgeBase[queryType]['en'];
+            
+            responseDiv.innerHTML = `
+                <div class="response">
+                    <strong>🤖 AI Response:</strong><br>
+                    ${response}
+                </div>
+            `;
+        }
+
+        function handleImageUpload() {
+            const fileInput = document.getElementById('imageUpload');
+            const responseDiv = document.getElementById('imageResponse');
+            
+            if (fileInput.files.length > 0) {
+                responseDiv.innerHTML = '<div class="response">📷 Image uploaded! In a real implementation, this would be analyzed by AI to identify diseases or pests.</div>';
+            }
+        }
+
+        // Initialize
+        updateLanguageDisplay();
+    </script>
+</body>
+</html>
