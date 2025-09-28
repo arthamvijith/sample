@@ -1,6 +1,6 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
-import { Home, User, Mail } from 'lucide-react';
+import { Home, MessageSquare, Info, Phone, Sprout } from 'lucide-react';
 
 export const Route = createRootRoute({
   component: () => (
@@ -10,10 +10,10 @@ export const Route = createRootRoute({
           <div className="flex justify-between h-16">
             <div className="flex items-center space-x-8">
               <Link to="/" className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-sm">A</span>
+                <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
+                  <Sprout className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-semibold text-lg">My App</span>
+                <span className="font-semibold text-lg text-green-800">KrishiMitra AI</span>
               </Link>
               
               <div className="hidden md:flex items-center space-x-4">
@@ -30,6 +30,19 @@ export const Route = createRootRoute({
                   )}
                 </Link>
                 
+                <Link to="/query">
+                  {({ isActive }) => (
+                    <Button 
+                      variant={isActive ? "default" : "ghost"} 
+                      size="sm"
+                      className="flex items-center space-x-2"
+                    >
+                      <MessageSquare className="w-4 h-4" />
+                      <span>Ask Query</span>
+                    </Button>
+                  )}
+                </Link>
+                
                 <Link to="/about">
                   {({ isActive }) => (
                     <Button 
@@ -37,7 +50,7 @@ export const Route = createRootRoute({
                       size="sm"
                       className="flex items-center space-x-2"
                     >
-                      <User className="w-4 h-4" />
+                      <Info className="w-4 h-4" />
                       <span>About</span>
                     </Button>
                   )}
@@ -50,7 +63,7 @@ export const Route = createRootRoute({
                       size="sm"
                       className="flex items-center space-x-2"
                     >
-                      <Mail className="w-4 h-4" />
+                      <Phone className="w-4 h-4" />
                       <span>Contact</span>
                     </Button>
                   )}
