@@ -14,11 +14,10 @@ function Home() {
       {/* Hero Section */}
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-          Welcome to My App
+          Welcome to Digital Krishi Officer
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          A simple and elegant React application built with TanStack Router, 
-          ShadCN UI, and Tailwind CSS.
+          An AI-powered advisory system delivering personalized farming advice to Malayalam-speaking farmers in real time.
         </p>
         <div className="flex justify-center space-x-4 pt-4">
           <Link to="/about">
@@ -42,9 +41,9 @@ function Home() {
             <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
               <Zap className="w-6 h-6 text-primary" />
             </div>
-            <CardTitle>Fast Performance</CardTitle>
+            <CardTitle>Malayalam Support</CardTitle>
             <CardDescription>
-              Built with modern tools for optimal speed and performance.
+              Ask queries in your native language via text or voice.
             </CardDescription>
           </CardHeader>
         </Card>
@@ -54,9 +53,9 @@ function Home() {
             <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
               <Sparkles className="w-6 h-6 text-primary" />
             </div>
-            <CardTitle>Beautiful Design</CardTitle>
+            <CardTitle>Image Analysis</CardTitle>
             <CardDescription>
-              Clean and modern interface with attention to detail.
+              Upload crop images to diagnose pests and diseases instantly.
             </CardDescription>
           </CardHeader>
         </Card>
@@ -66,9 +65,9 @@ function Home() {
             <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
               <Shield className="w-6 h-6 text-primary" />
             </div>
-            <CardTitle>Type Safe</CardTitle>
+            <CardTitle>Location Aware</CardTitle>
             <CardDescription>
-              Built with TypeScript for better developer experience.
+              Advice tailored to your farm’s location, season, and crop stage.
             </CardDescription>
           </CardHeader>
         </Card>

@@ -16,9 +16,9 @@ function About() {
   return (
     <div className="space-y-8">
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">About This App</h1>
+        <h1 className="text-4xl font-bold tracking-tight">About Digital Krishi Officer</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Learn more about the technologies and principles behind this application.
+          Learn how our AI advisory platform bridges the gap between farmers and experts.
         </p>
       </div>
 
@@ -30,7 +30,7 @@ function About() {
             </div>
             <CardTitle>Modern Stack</CardTitle>
             <CardDescription>
-              Built with the latest and greatest web technologies for optimal performance and developer experience.
+              Built on cutting-edge AI models fine-tuned with Kerala-specific agri datasets, weather feeds, and scheme guidelines.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -51,15 +51,15 @@ function About() {
             </div>
             <CardTitle>Design System</CardTitle>
             <CardDescription>
-              Consistent and accessible design using ShadCN UI components and Tailwind CSS.
+              Consistent and accessible design ensures farmers of varying literacy levels can navigate with ease.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>• Responsive design principles</li>
-              <li>• Consistent color palette</li>
-              <li>• Accessible components</li>
-              <li>• Modern typography</li>
+              <li>• Multilingual natural language understanding (Malayalam first)</li>
+              <li>• Image-based pest & disease diagnosis</li>
+              <li>• Personalized, location-aware recommendations</li>
+              <li>• Escalation of complex queries to local officers</li>
             </ul>
           </CardContent>
         </Card>
